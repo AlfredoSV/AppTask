@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppTask.Migrations.ApplicationDataDb
 {
     [DbContext(typeof(ApplicationDataDbContext))]
-    [Migration("20250504144732_AddData")]
-    partial class AddData
+    [Migration("20250507131142_InitTables")]
+    partial class InitTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,7 +72,7 @@ namespace AppTask.Migrations.ApplicationDataDb
                         });
                 });
 
-            modelBuilder.Entity("AppTask.Data.Task", b =>
+            modelBuilder.Entity("AppTask.Data.TaskS", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,6 +113,20 @@ namespace AppTask.Migrations.ApplicationDataDb
                     b.HasIndex("StatusId");
 
                     b.ToTable("Tasks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("31951ab6-101a-427d-9d9f-a613ad50601f"),
+                            AssingTo = new Guid("71153bdf-54b6-408d-80a7-61d8e3a69673"),
+                            CreatedAt = new DateTime(2025, 5, 7, 7, 10, 55, 0, DateTimeKind.Unspecified),
+                            CreatedBy = new Guid("71153bdf-54b6-408d-80a7-61d8e3a69673"),
+                            Description = "N/A",
+                            FinishtAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InitAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "First",
+                            StatusId = new Guid("e0a1e5e8-9271-4f57-8476-f30841c4d77e")
+                        });
                 });
 
             modelBuilder.Entity("AppTask.Data.User", b =>
@@ -137,7 +151,7 @@ namespace AppTask.Migrations.ApplicationDataDb
                         });
                 });
 
-            modelBuilder.Entity("AppTask.Data.Task", b =>
+            modelBuilder.Entity("AppTask.Data.TaskS", b =>
                 {
                     b.HasOne("AppTask.Data.User", "UserAssingned")
                         .WithMany()

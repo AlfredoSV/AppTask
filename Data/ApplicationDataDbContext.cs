@@ -10,7 +10,7 @@ namespace AppTask.Data
 
         }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskS> Tasks { get; set; }
 
         public DbSet<User> Users { get; set; }
 
@@ -21,17 +21,17 @@ namespace AppTask.Data
             base.OnModelCreating(builder);
 
             builder.Entity
-                <Task>().HasOne(t => t.Status)
+                <TaskS>().HasOne(t => t.Status)
                 .WithMany()
                 .HasForeignKey(t => t.StatusId);
 
             builder.Entity
-                <Task>().HasOne(t => t.UserAssingned)
+                <TaskS>().HasOne(t => t.UserAssingned)
                 .WithMany()
                 .HasForeignKey(t => t.AssingTo);
 
             builder.Entity
-                <Task>().HasOne(t => t.UserCreated)
+                <TaskS>().HasOne(t => t.UserCreated)
                 .WithMany()
                 .HasForeignKey(t => t.CreatedBy)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -47,6 +47,14 @@ namespace AppTask.Data
             );
             builder.Entity<User>().HasData([
                 new User(){Id = Guid.Parse("71153bdf-54b6-408d-80a7-61d8e3a69673"), Name = "alfredosanchezverduzco@outlook.com"}
+                ]
+                );
+
+            builder.Entity<TaskS>().HasData([
+                new TaskS(){Id = Guid.Parse("31951ab6-101a-427d-9d9f-a613ad50601f"), Name = "First", Description="N/A", CreatedAt = DateTime.Parse("07/05/2025 07:10:55 a. m."), 
+                CreatedBy = Guid.Parse("71153bdf-54b6-408d-80a7-61d8e3a69673"),
+                AssingTo = Guid.Parse("71153bdf-54b6-408d-80a7-61d8e3a69673"),
+                StatusId = Guid.Parse("e0a1e5e8-9271-4f57-8476-f30841c4d77e")}
                 ]
                 );
         }

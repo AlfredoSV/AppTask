@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AppTask.Data
 {
-    public class Task
+    public class TaskS
     {
         [Key]
         public Guid Id { get; set; }

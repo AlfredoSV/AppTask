@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AppTask.Migrations.ApplicationDataDb
 {
     /// <inheritdoc />
-    public partial class AddData : Migration
+    public partial class InitTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,6 +91,11 @@ namespace AppTask.Migrations.ApplicationDataDb
                 table: "Users",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { new Guid("71153bdf-54b6-408d-80a7-61d8e3a69673"), "alfredosanchezverduzco@outlook.com" });
+
+            migrationBuilder.InsertData(
+                table: "Tasks",
+                columns: new[] { "Id", "AssingTo", "CreatedAt", "CreatedBy", "Description", "FinishtAt", "InitAt", "Name", "StatusId" },
+                values: new object[] { new Guid("31951ab6-101a-427d-9d9f-a613ad50601f"), new Guid("71153bdf-54b6-408d-80a7-61d8e3a69673"), new DateTime(2025, 5, 7, 7, 10, 55, 0, DateTimeKind.Unspecified), new Guid("71153bdf-54b6-408d-80a7-61d8e3a69673"), "N/A", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "First", new Guid("e0a1e5e8-9271-4f57-8476-f30841c4d77e") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_AssingTo",
